@@ -26,6 +26,6 @@
 
     <!--    注册映射器-->
     <mappers>
-        <package name="com.ming.mapper"></package>
+        <package name="com.ming.mapper"/>
     </mappers>
 </configuration>

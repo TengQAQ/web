@@ -1,6 +1,7 @@
 package com.ming.service.Impl;
 
 import com.ming.entity.UserInfo;
+import com.ming.mapper.Impl.UserInfoMapperImpl;
 import com.ming.mapper.UserInfoMapper;
 import com.ming.service.UserInfoService;
 

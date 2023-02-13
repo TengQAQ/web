@@ -15,7 +15,7 @@ public class DeliveryAddr implements Serializable {
     /**
      * rw_user_info主键
      */
-    private Integer userId;
+    private UserInfo userId;
 
     /**
      * 收货联系人名称
@@ -91,14 +91,11 @@ public class DeliveryAddr implements Serializable {
     /**
      * rw_user_info主键
      */
-    public Integer getUserId() {
+    public UserInfo getUserId() {
         return userId;
     }
 
-    /**
-     * rw_user_info主键
-     */
-    public void setUserId(Integer userId) {
+    public void setUserId(UserInfo userId) {
         this.userId = userId;
     }
 
@@ -256,4 +253,37 @@ public class DeliveryAddr implements Serializable {
         this.value3 = value3;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DeliveryAddr)) return false;
+
+        DeliveryAddr that = (DeliveryAddr) o;
+
+        return getId() != null ? getId().equals(that.getId()) : that.getId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "DeliveryAddr{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", contactsName='" + contactsName + '\'' +
+                ", contactsTel='" + contactsTel + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", addr='" + addr + '\'' +
+                ", addrFirst=" + addrFirst +
+                ", addrSecond=" + addrSecond +
+                ", addrThird=" + addrThird +
+                ", bestTime=" + bestTime +
+                ", isDefault='" + isDefault + '\'' +
+                ", value2='" + value2 + '\'' +
+                ", value3='" + value3 + '\'' +
+                '}';
+    }
 }

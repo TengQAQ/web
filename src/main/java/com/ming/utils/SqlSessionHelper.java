@@ -8,17 +8,15 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.Reader;
 
-public class SqsessionHelper {
-	static String PATH="jdbc.properties";
-	static SqlSessionFactory factory = null;
+public class SqlSessionHelper {
+	private static String PATH="mybatis-config.xml";
+	private static SqlSessionFactory factory;
 	static {
-		if (factory.equals(null)){
-			try {
-				Reader reader = Resources.getResourceAsReader(PATH);
-				factory = new SqlSessionFactoryBuilder().build(reader);
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+		try {
+			Reader reader = Resources.getResourceAsReader(PATH);
+			factory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 	public static SqlSession opensqlsession(){

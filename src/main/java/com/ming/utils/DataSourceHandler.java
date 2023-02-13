@@ -16,7 +16,7 @@ public class DataSourceHandler implements DataSourceFactory {
 
 	@Override
 	public DataSource getDataSource() {
-		if (dataSource.equals(null)){
+		if (dataSource == null){
 			try {
 				return DruidDataSourceFactory.createDataSource(properties);
 			} catch (Exception e) {
