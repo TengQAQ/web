@@ -15,7 +15,7 @@ public class DeliveryAddr implements Serializable {
     /**
      * rw_user_info主键
      */
-    private UserInfo userId;
+    private UserInfo userInfo;
 
     /**
      * 收货联系人名称
@@ -92,11 +92,11 @@ public class DeliveryAddr implements Serializable {
      * rw_user_info主键
      */
     public UserInfo getUserId() {
-        return userId;
+        return userInfo;
     }
 
     public void setUserId(UserInfo userId) {
-        this.userId = userId;
+        this.userInfo = userId;
     }
 
     /**
@@ -272,7 +272,7 @@ public class DeliveryAddr implements Serializable {
     public String toString() {
         return "DeliveryAddr{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", userId=" + userInfo +
                 ", contactsName='" + contactsName + '\'' +
                 ", contactsTel='" + contactsTel + '\'' +
                 ", zipCode='" + zipCode + '\'' +

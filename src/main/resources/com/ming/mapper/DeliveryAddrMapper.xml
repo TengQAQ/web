@@ -6,7 +6,6 @@
 
     <resultMap id="BaseResultMap" type="com.ming.entity.DeliveryAddr">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="contactsName" column="contacts_name" jdbcType="VARCHAR"/>
             <result property="contactsTel" column="contacts_tel" jdbcType="VARCHAR"/>
             <result property="zipCode" column="zip_code" jdbcType="VARCHAR"/>
@@ -18,6 +17,11 @@
             <result property="isDefault" column="is_default" jdbcType="VARCHAR"/>
             <result property="value2" column="value_2" jdbcType="VARCHAR"/>
             <result property="value3" column="value_3" jdbcType="VARCHAR"/>
+            <association property="userInfo" column="user_id" javaType="com.ming.entity.UserInfo">
+                <id column="user_id" property="id"/>
+                <result column="reg_time" property="regTime"/>
+                <result column="user_point" property="userPoint"/>
+            </association>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -46,7 +50,7 @@
         ,addr_first,addr_second,addr_third
         ,best_time,is_default,value_2
         ,value_3)
-        values (#{id,jdbcType=INTEGER},#{userId,jdbcType=INTEGER},#{contactsName,jdbcType=VARCHAR}
+        values (#{id,jdbcType=INTEGER},#{userInfo.id},#{contactsName,jdbcType=VARCHAR}
         ,#{contactsTel,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR},#{addr,jdbcType=VARCHAR}
         ,#{addrFirst,jdbcType=INTEGER},#{addrSecond,jdbcType=INTEGER},#{addrThird,jdbcType=INTEGER}
         ,#{bestTime,jdbcType=INTEGER},#{isDefault,jdbcType=VARCHAR},#{value2,jdbcType=VARCHAR}
@@ -56,7 +60,7 @@
         insert into delivery_addr
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="id != null">id,</if>
-                <if test="userId != null">user_id,</if>
+                <if test="userInfo != null">user_id,</if>
                 <if test="contactsName != null">contacts_name,</if>
                 <if test="contactsTel != null">contacts_tel,</if>
                 <if test="zipCode != null">zip_code,</if>
@@ -71,7 +75,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
                 <if test="id != null">#{id,jdbcType=INTEGER},</if>
-                <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+                <if test="userInfo != null">#{userInfo.id},</if>
                 <if test="contactsName != null">#{contactsName,jdbcType=VARCHAR},</if>
                 <if test="contactsTel != null">#{contactsTel,jdbcType=VARCHAR},</if>
                 <if test="zipCode != null">#{zipCode,jdbcType=VARCHAR},</if>
@@ -88,8 +92,8 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.ming.entity.DeliveryAddr">
         update delivery_addr
         <set>
-                <if test="userId != null">
-                    user_id = #{userId,jdbcType=INTEGER},
+                <if test="userInfo != null">
+                    user_id = #{userInfo.id},
                 </if>
                 <if test="contactsName != null">
                     contacts_name = #{contactsName,jdbcType=VARCHAR},
@@ -130,7 +134,7 @@
     <update id="updateByPrimaryKey" parameterType="com.ming.entity.DeliveryAddr">
         update delivery_addr
         set 
-            user_id =  #{userId,jdbcType=INTEGER},
+            user_id =  #{userInfo.id},
             contacts_name =  #{contactsName,jdbcType=VARCHAR},
             contacts_tel =  #{contactsTel,jdbcType=VARCHAR},
             zip_code =  #{zipCode,jdbcType=VARCHAR},

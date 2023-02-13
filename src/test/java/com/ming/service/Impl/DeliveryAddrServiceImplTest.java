@@ -1,5 +1,6 @@
 package com.ming.service.Impl;
 
+import com.ming.entity.DeliveryAddr;
 import com.ming.service.DeliveryAddrService;
 import org.junit.Test;
 
@@ -22,7 +23,8 @@ public class DeliveryAddrServiceImplTest {
 
 	@Test
 	public void selectByPrimaryKey() {
-		service.selectByPrimaryKey(1L);
+		DeliveryAddr deliveryAddr = service.selectByPrimaryKey(1L);
+		System.out.println(deliveryAddr);
 	}
 
 	@Test
