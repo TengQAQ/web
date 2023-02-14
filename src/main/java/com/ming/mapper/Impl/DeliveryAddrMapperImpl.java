@@ -4,6 +4,8 @@ import com.ming.entity.DeliveryAddr;
 import com.ming.mapper.DeliveryAddrMapper;
 import com.ming.utils.SqlSessionHelper;
 
+import java.util.List;
+
 public class DeliveryAddrMapperImpl extends SqlSessionHelper implements DeliveryAddrMapper {
 	@Override
 	public Long deleteByPrimaryKey(Long id) {
@@ -33,5 +35,10 @@ public class DeliveryAddrMapperImpl extends SqlSessionHelper implements Delivery
 	@Override
 	public Long updateByPrimaryKey(DeliveryAddr record) {
 		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<DeliveryAddr> selectAll() {
+		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).selectAll();
 	}
 }

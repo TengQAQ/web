@@ -1,8 +1,11 @@
 package com.ming.mapper.Impl;
 
+import com.ming.entity.DeliveryAddr;
 import com.ming.entity.UserInfo;
 import com.ming.mapper.UserInfoMapper;
 import com.ming.utils.SqlSessionHelper;
+
+import java.util.List;
 
 public class UserInfoMapperImpl extends SqlSessionHelper implements UserInfoMapper {
 	@Override
@@ -34,4 +37,5 @@ public class UserInfoMapperImpl extends SqlSessionHelper implements UserInfoMapp
 	public Long updateByPrimaryKey(UserInfo record) {
 		return SqlSessionHelper.opensqlsession().getMapper(UserInfoMapper.class).updateByPrimaryKey(record);
 	}
+
 }

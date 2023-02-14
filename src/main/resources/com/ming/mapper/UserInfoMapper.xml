@@ -30,11 +30,6 @@
         from user_info
         where  id = #{id,jdbcType=INTEGER} 
     </select>
-    <select id="selectAll" resultType="com.ming.entity.DeliveryAddr">
-        select *
-        from user_info
-        <include refid="Base_Column_List" />
-    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from user_info

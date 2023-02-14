@@ -38,6 +38,24 @@
         from delivery_addr
         where  id = #{id,jdbcType=INTEGER} 
     </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            p.id,
+            p.user_id,
+            p.contacts_name,
+            p.contacts_tel,
+            p.zip_code,
+            p.addr,
+            p.addr_first,
+            p.addr_second,
+            p.addr_third,
+            p.best_time,
+            p.is_default,
+            t.reg_time,
+            t.user_point
+        from delivery_addr p
+        join user_id t on p.user_id = t.id
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from delivery_addr

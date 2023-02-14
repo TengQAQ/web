@@ -31,5 +31,4 @@ public interface UserInfoMapper extends BaseMapper<Long,UserInfo>{
     @Override
     Long updateByPrimaryKey(UserInfo record);
 
-    List<DeliveryAddr> selectAll();
 }

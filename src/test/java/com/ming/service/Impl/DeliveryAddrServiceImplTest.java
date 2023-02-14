@@ -34,4 +34,9 @@ public class DeliveryAddrServiceImplTest {
 	@Test
 	public void updateByPrimaryKey() {
 	}
+
+	@Test
+	void selectAll() {
+		service.selectAll();
+	}
 }

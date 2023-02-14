@@ -2,6 +2,8 @@ package com.ming.mapper;
 
 import com.ming.entity.DeliveryAddr;
 
+import java.util.List;
+
 /**
 * @author QinTeng
 * @description 针对表【delivery_addr】的数据库操作Mapper
@@ -27,4 +29,6 @@ public interface DeliveryAddrMapper extends BaseMapper<Long,DeliveryAddr>{
 
     @Override
     Long updateByPrimaryKey(DeliveryAddr record);
+
+    List<DeliveryAddr> selectAll();
 }

@@ -41,6 +41,6 @@ public class DeliveryAddrServiceImpl implements DeliveryAddrService {
 
 	@Override
 	public List<DeliveryAddr> selectAll() {
-		return null;
+		return mapper.selectAll();
 	}
 }
