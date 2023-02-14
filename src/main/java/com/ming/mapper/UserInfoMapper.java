@@ -1,6 +1,9 @@
 package com.ming.mapper;
 
+import com.ming.entity.DeliveryAddr;
 import com.ming.entity.UserInfo;
+
+import java.util.List;
 
 /**
 * @author QinTeng
@@ -27,4 +30,6 @@ public interface UserInfoMapper extends BaseMapper<Long,UserInfo>{
 
     @Override
     Long updateByPrimaryKey(UserInfo record);
+
+    List<DeliveryAddr> selectAll();
 }
