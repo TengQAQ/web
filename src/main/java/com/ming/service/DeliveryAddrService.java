@@ -2,6 +2,8 @@ package com.ming.service;
 
 import com.ming.entity.DeliveryAddr;
 
+import java.util.List;
+
 public interface DeliveryAddrService extends BaseService<Long, DeliveryAddr>{
 	@Override
 	Long deleteByPrimaryKey(Long id);
@@ -20,4 +22,6 @@ public interface DeliveryAddrService extends BaseService<Long, DeliveryAddr>{
 
 	@Override
 	Long updateByPrimaryKey(DeliveryAddr record);
+
+	List<DeliveryAddr> selectAll();
 }

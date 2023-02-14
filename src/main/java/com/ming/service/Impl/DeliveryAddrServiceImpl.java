@@ -5,6 +5,8 @@ import com.ming.mapper.DeliveryAddrMapper;
 import com.ming.mapper.Impl.DeliveryAddrMapperImpl;
 import com.ming.service.DeliveryAddrService;
 
+import java.util.List;
+
 public class DeliveryAddrServiceImpl implements DeliveryAddrService {
 	DeliveryAddrMapper mapper = new DeliveryAddrMapperImpl();
 	@Override
@@ -35,5 +37,10 @@ public class DeliveryAddrServiceImpl implements DeliveryAddrService {
 	@Override
 	public Long updateByPrimaryKey(DeliveryAddr record) {
 		return mapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<DeliveryAddr> selectAll() {
+		return null;
 	}
 }
