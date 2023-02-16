@@ -91,12 +91,12 @@ public class DeliveryAddr implements Serializable {
     /**
      * rw_user_info主键
      */
-    public UserInfo getUserId() {
+    public UserInfo getUserInfo() {
         return userInfo;
     }
 
-    public void setUserId(UserInfo userId) {
-        this.userInfo = userId;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     /**

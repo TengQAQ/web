@@ -24,4 +24,6 @@ public interface DeliveryAddrService extends BaseService<Long, DeliveryAddr>{
 	Long updateByPrimaryKey(DeliveryAddr record);
 
 	List<DeliveryAddr> selectAll();
+
+	int deletebatch(List<Long> lis);
 }

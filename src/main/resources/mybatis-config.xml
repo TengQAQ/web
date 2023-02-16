@@ -28,6 +28,4 @@
     <mappers>
         <package name="com.ming.mapper"/>
     </mappers>
-
-    <servlet></servlet>
 </configuration>

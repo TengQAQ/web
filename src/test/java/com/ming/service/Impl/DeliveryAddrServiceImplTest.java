@@ -1,8 +1,12 @@
 package com.ming.service.Impl;
 
 import com.ming.entity.DeliveryAddr;
+import com.ming.entity.UserInfo;
 import com.ming.service.DeliveryAddrService;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -19,6 +23,15 @@ public class DeliveryAddrServiceImplTest {
 
 	@Test
 	public void insertSelective() {
+		DeliveryAddr deliveryAddr = new DeliveryAddr();
+		UserInfo u = new UserInfo();
+		 u.setId(12);
+		deliveryAddr.setUserInfo(u);
+		deliveryAddr.setContactsName("黎协");
+		deliveryAddr.setContactsTel("110");
+		deliveryAddr.setAddr("石马河派出所");
+		deliveryAddr.setIsDefault("0");
+		System.out.println(service.insertSelective(deliveryAddr));
 	}
 
 	@Test
@@ -36,7 +49,15 @@ public class DeliveryAddrServiceImplTest {
 	}
 
 	@Test
-	void selectAll() {
-		service.selectAll();
+	public void selectAll() {
+		List<DeliveryAddr> deliveryAddrs = service.selectAll();
+//		System.out.println(deliveryAddrs);
+	}
+
+	@Test
+	public void deletebatch() {
+		List<Long> interger = Arrays.asList(10L,13L);
+		int deletebatch = this.service.deletebatch(interger);
+		System.out.println(deletebatch);
 	}
 }

@@ -43,4 +43,9 @@ public class DeliveryAddrServiceImpl implements DeliveryAddrService {
 	public List<DeliveryAddr> selectAll() {
 		return mapper.selectAll();
 	}
+
+	@Override
+	public int deletebatch(List<Long> lis) {
+		return mapper.deletebatch(lis);
+	}
 }

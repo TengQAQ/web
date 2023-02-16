@@ -17,11 +17,13 @@
             <result property="isDefault" column="is_default" jdbcType="VARCHAR"/>
             <result property="value2" column="value_2" jdbcType="VARCHAR"/>
             <result property="value3" column="value_3" jdbcType="VARCHAR"/>
-            <association property="userInfo" column="user_id" javaType="com.ming.entity.UserInfo">
-                <id column="user_id" property="id"/>
-                <result column="reg_time" property="regTime"/>
-                <result column="user_point" property="userPoint"/>
-            </association>
+<!--            <association property="userInfo" column="user_id" javaType="com.ming.entity.UserInfo">-->
+<!--                <id column="user_id" property="id"/>-->
+<!--                <result column="reg_time" property="regTime"/>-->
+<!--                <result column="user_point" property="userPoint"/>-->
+<!--            </association>-->
+
+            <association property="userInfo" column="user_id" fetchType="lazy" select="com.ming.mapper.UserInfoMapper.selectByPrimaryKey"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -54,7 +56,7 @@
             t.reg_time,
             t.user_point
         from delivery_addr p
-        join user_id t on p.user_id = t.id
+        join user_info t on p.user_id = t.id
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -166,4 +168,12 @@
             value_3 =  #{value3,jdbcType=VARCHAR}
         where   id = #{id,jdbcType=INTEGER} 
     </update>
+    
+    <delete id="deletebatch" parameterType="list"   >
+        delete from delivery_addr
+        where id in
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

@@ -41,4 +41,9 @@ public class DeliveryAddrMapperImpl extends SqlSessionHelper implements Delivery
 	public List<DeliveryAddr> selectAll() {
 		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).selectAll();
 	}
+
+	@Override
+	public int deletebatch(List<Long> lis) {
+		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).deletebatch(lis);
+	}
 }
