@@ -1,5 +1,6 @@
 package com.ming.service.Impl;
 
+import com.ming.Dto.PageDto;
 import com.ming.entity.DeliveryAddr;
 import com.ming.entity.UserInfo;
 import com.ming.service.DeliveryAddrService;
@@ -50,7 +51,10 @@ public class DeliveryAddrServiceImplTest {
 
 	@Test
 	public void selectAll() {
-		List<DeliveryAddr> deliveryAddrs = service.selectAll();
+		PageDto dto = new PageDto();
+		dto.setPageNum(1);
+		dto.setSize(5);
+		List<DeliveryAddr> deliveryAddrs = service.selectAll(dto);
 //		System.out.println(deliveryAddrs);
 	}
 

@@ -1,5 +1,6 @@
 package com.ming.mapper;
 
+import com.ming.Dto.PageDto;
 import com.ming.entity.DeliveryAddr;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface DeliveryAddrMapper extends BaseMapper<Long,DeliveryAddr>{
     @Override
     Long updateByPrimaryKey(DeliveryAddr record);
 
-    List<DeliveryAddr> selectAll();
+    List<DeliveryAddr> selectAll(PageDto dto);
 
     int deletebatch(List<Long> lis);
 }

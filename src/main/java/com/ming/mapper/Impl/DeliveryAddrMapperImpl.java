@@ -1,5 +1,7 @@
 package com.ming.mapper.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.ming.Dto.PageDto;
 import com.ming.entity.DeliveryAddr;
 import com.ming.mapper.DeliveryAddrMapper;
 import com.ming.utils.SqlSessionHelper;
@@ -38,8 +40,9 @@ public class DeliveryAddrMapperImpl extends SqlSessionHelper implements Delivery
 	}
 
 	@Override
-	public List<DeliveryAddr> selectAll() {
-		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).selectAll();
+	public List<DeliveryAddr> selectAll(PageDto dto) {
+		PageHelper.startPage(dto.getPageNum(), dto.getSize());
+		return SqlSessionHelper.opensqlsession().getMapper(DeliveryAddrMapper.class).selectAll(dto);
 	}
 
 	@Override

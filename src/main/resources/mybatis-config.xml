@@ -10,6 +10,17 @@
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
+<!--    为当前的类配置别名-->
+    <typeAliases>
+        <package name="com.ming.entity"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    
     <environments default="${env}">
         <environment id="dev">
             <transactionManager type="jdbc"></transactionManager>

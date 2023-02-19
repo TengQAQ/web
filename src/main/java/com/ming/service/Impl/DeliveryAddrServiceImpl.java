@@ -1,5 +1,6 @@
 package com.ming.service.Impl;
 
+import com.ming.Dto.PageDto;
 import com.ming.entity.DeliveryAddr;
 import com.ming.mapper.DeliveryAddrMapper;
 import com.ming.mapper.Impl.DeliveryAddrMapperImpl;
@@ -40,8 +41,8 @@ public class DeliveryAddrServiceImpl implements DeliveryAddrService {
 	}
 
 	@Override
-	public List<DeliveryAddr> selectAll() {
-		return mapper.selectAll();
+	public List<DeliveryAddr> selectAll(PageDto dto) {
+		return mapper.selectAll(dto);
 	}
 
 	@Override
