@@ -13,6 +13,6 @@
     <title>bbs论坛项目</title>
     <head/>
 <body>
-    <p>这是一个P标签</p>
+    <p>首页</p>
 </body>
 </html>
