@@ -5,7 +5,7 @@ package com.ming.vo;
  * 前后端分离的项目进行数据交互时，必须有一个统一的格式
  * { code:状态码, message:消息, data: 响应的数据 }
  */
-public class Result {
+public class Result{
 	// 状态码
 	private Integer code;
 	// 消息
@@ -19,6 +19,28 @@ public class Result {
 	public Result(Integer code, String message) {
 		this.code = code;
 		this.message = message;
+	}
+
+	/**
+	 * 根据枚举的对象得到Result
+	 * @param codeEnum
+	 * @return
+	 */
+	public static Result of(CodeEnum codeEnum) {
+		return new Result(codeEnum.getCode(), codeEnum.getMessage());
+	}
+
+	public static Result of(Long update, String failureMessage) {
+		Result result;
+		if (update > 0) { // 数据库受影响的行数大于0，则说明删除成功
+			result = Result.of(CodeEnum.SUCCESS);
+		} else {
+			result = Result.of(CodeEnum.FAILURE);
+			if (failureMessage != null) {
+				result.setMessage(failureMessage);
+			}
+		}
+		return result;
 	}
 
 	public Integer getCode() {

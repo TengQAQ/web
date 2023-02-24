@@ -1,5 +1,8 @@
 package com.ming.vo;
 
+import com.github.pagehelper.PageInfo;
+import com.ming.entity.GoodsInfo;
+
 import java.util.List;
 
 /**
@@ -20,15 +23,15 @@ public class PageVo<T> {
 	 * @param <T>
 	 * @return
 	 */
-//	public static <T> PageVo<T> of(PageInfo<T> pageInfo){
-//		PageVo<T> pageVo = new PageVo<>();
+	public static <T> PageVo<T> of(PageInfo<T> pageInfo){
+		PageVo<T> pageVo = new PageVo<T>();
 //		// 设置条数
 //		pageVo.setTotal(pageInfo.getTotal());
 //		pageVo.setPageNum(pageInfo.getPageNum());
 //		pageVo.setPageSize(pageInfo.getPageSize());
 //		pageVo.setList(pageInfo.getList());
-//		return pageVo;
-//	}
+		return pageVo;
+	}
 
 	public Integer getPageNum() {
 		return pageNum;

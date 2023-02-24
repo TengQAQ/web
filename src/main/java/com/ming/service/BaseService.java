@@ -1,16 +1,18 @@
 package com.ming.service;
 
+import com.ming.vo.Result;
+
 public interface BaseService<PK,Model> {
 
-	PK deleteByPrimaryKey(PK id);
+	Result deleteByPrimaryKey(PK id);
 
-	PK insert(Model record);
+	Result insert(Model record);
 
-	PK insertSelective(Model record);
+	Result insertSelective(Model record);
 
-	Model selectByPrimaryKey(PK id);
+	Result selectByPrimaryKey(PK id);
 
-	PK updateByPrimaryKeySelective(Model record);
+	Result updateByPrimaryKeySelective(Model record);
 
-	PK updateByPrimaryKey(Model record);
+	Result updateByPrimaryKey(Model record);
 }
