@@ -16,11 +16,11 @@ public class aFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 		System.out.println("do-filter");
 		filterChain.doFilter(servletRequest,servletResponse);
-		System.out.println("傻逼黎协执行结束");
+		System.out.println("执行结束");
 	}
 
 	@Override
 	public void destroy() {
-		System.out.println("傻逼黎协");
+		System.out.println("拦截器被销毁");
 	}
 }

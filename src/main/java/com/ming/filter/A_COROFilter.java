@@ -35,24 +35,23 @@ public class A_COROFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-		// 解决跨域请求问题
-		HttpServletRequest req = (HttpServletRequest) servletRequest;
-		HttpServletResponse resp = (HttpServletResponse) servletResponse;
-		String origin = req.getHeader (ORIGIN);
-		if (origin == null) {
-			origin = req.getHeader (REFERER);
-		}
-		// 允许指定域访问跨域资源
-		setHeader (resp, ACCESS_CONTROL_ALLOW_ORIGIN, origin);
-		// 允许客户端携带跨域cookie，此时origin值不能为“*”，只能为指定单一域名
-		setHeader (resp, ACCESS_CONTROL_ALLOW_CREDENTIALS, TRUE);
+		//拦截器允许跨域同源
+		System.out.println(this.getClass()+"允许跨域同源");
+		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
+		// 响应类型
+		response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
+		// 预检请求的结果缓存60分钟
+		response.setHeader("Access-Control-Max-Age", "3600");
 
-		filterChain.doFilter (req, resp);
-
-	}
-
-	private void setHeader(HttpServletResponse resp, String key, String value) {
-		resp.setHeader (key, value);
+		//httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
+		// 允许所有
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		// 指定允许其他域名访问
+		// response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1,http://locahost"); // 允许白名单IP
+		// 响应头设置
+		response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+		filterChain.doFilter(request,response);
 	}
 
 	@Override

@@ -4,15 +4,15 @@ import com.ming.vo.Result;
 
 public interface BaseService<PK,Model> {
 
-	Result deleteByPrimaryKey(PK id);
+	PK deleteByPrimaryKey(PK id);
 
-	Result insert(Model record);
+	PK insert(Model record);
 
-	Result insertSelective(Model record);
+	PK insertSelective(Model record);
 
-	Result selectByPrimaryKey(PK id);
+	Model selectByPrimaryKey(PK id);
 
-	Result updateByPrimaryKeySelective(Model record);
+	PK updateByPrimaryKeySelective(Model record);
 
-	Result updateByPrimaryKey(Model record);
+	PK updateByPrimaryKey(Model record);
 }
