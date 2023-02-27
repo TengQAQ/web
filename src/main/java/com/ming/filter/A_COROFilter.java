@@ -1,61 +1,46 @@
 package com.ming.filter;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+@WebFilter(urlPatterns = {"/api/*"})
 public class A_COROFilter implements Filter {
-	private static final String ORIGIN = "Origin";
-
-	private static final String REFERER = "Referer";
-
-	private static final String TRUE = "true";
-
-	private static final String CACHE_86400 = "86400";
-
-	private static final String ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
-
-	private static final String ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
-
-	private static final String ACCESS_CONTROL_REQUEST_METHOD = "Access-Control-Request-Method";
-
-	private static final String ACCESS_CONTROL_REQUEST_HEADERS = "Access-Control-Request-Headers";
-
-	private static final String ACCESS_CONTROL_MAX_AGE = "Access-Control-Max-Age";
-
-	private static final String ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
-
-	private static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		System.out.println("==================CORO拦截器已启动");
 //		Filter.super.init(filterConfig);
 	}
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) servletRequest;
+		HttpServletResponse resp = (HttpServletResponse) servletResponse;
 		//拦截器允许跨域同源
-		System.out.println(this.getClass()+"允许跨域同源");
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		// 响应类型
-		response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
-		// 预检请求的结果缓存60分钟
-		response.setHeader("Access-Control-Max-Age", "3600");
+		// 服务器允许任何域名跨域访问
+		resp.setHeader("Access-Control-Allow-Origin", "*");
+		resp.setHeader("Access-Control-Allow-Credentials", "true"); //允许携带cookie
+		resp.setHeader("Access-Control-Allow-Headers","token,Origin, X-Requested-With, Content-Type, Accept,mid,X-Token"); // 允许携带的自定义的请求头
 
-		//httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
-		// 允许所有
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		// 指定允许其他域名访问
-		// response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1,http://locahost"); // 允许白名单IP
-		// 响应头设置
-		response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
-		filterChain.doFilter(request,response);
+		String method = req.getMethod(); // 获取请求方法
+		if (method.equals("OPTIONS")) {
+			// 先放行,执行servlet中的service方法
+			filterChain.doFilter(servletRequest,servletResponse);
+			// servlet中重写doXxx方法，则通过allow去获取
+			String allow = resp.getHeader("Allow");
+			// 告诉浏览器，后端服务器支持的请求方法
+			resp.setHeader("Access-Control-Allow-Methods", allow);
+		} else {
+			filterChain.doFilter(servletRequest,servletResponse);
+		}
 	}
 
 	@Override
 	public void destroy() {
 //		Filter.super.destroy();
+		System.out.println("==================CORO拦截器已结束");
 	}
 }

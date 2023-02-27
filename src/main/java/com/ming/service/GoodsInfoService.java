@@ -8,13 +8,13 @@ import com.ming.vo.Result;
 import java.util.List;
 
 public interface GoodsInfoService {
-	Result deleteByPrimaryKey(Long id);
+	Result deleteByPrimaryKey(Integer id);
 
 	Result insert(GoodsInfo record);
 
 	Result insertSelective(GoodsInfo record);
 
-	Result selectByPrimaryKey(Long id);
+	Result selectByPrimaryKey(Integer id);
 
 	Result updateByPrimaryKeySelective(GoodsInfo record);
 

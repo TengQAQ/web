@@ -1,44 +1,47 @@
 package com.ming.mapper.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.ming.Dto.PageDto;
 import com.ming.entity.GoodsInfo;
 import com.ming.mapper.GoodsInfoMapper;
-import com.ming.utils.SqlSessionHelper;
+import com.ming.utils.SessionHelper;
 
 import java.util.List;
 
-public class GoodsInfoMapperImpl implements GoodsInfoMapper {
+public class GoodsInfoMapperImpl extends SessionHelper implements GoodsInfoMapper {
 	@Override
-	public Long deleteByPrimaryKey(Long id) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).deleteByPrimaryKey(id);
+	public Integer deleteByPrimaryKey(Integer id) {
+		return dml(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).deleteByPrimaryKey(id));
 	}
 
 	@Override
-	public Long insert(GoodsInfo record) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).insert(record);
+	public Integer insert(GoodsInfo record) {
+		return dml(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).insert(record));
 	}
 
 	@Override
-	public Long insertSelective(GoodsInfo record) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).insertSelective(record);
+	public Integer insertSelective(GoodsInfo record) {
+		return dml(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).insertSelective(record));
 	}
 
 	@Override
-	public GoodsInfo selectByPrimaryKey(Long id) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).selectByPrimaryKey(id);
+	public GoodsInfo selectByPrimaryKey(Integer id) {
+		return query(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).selectByPrimaryKey(id));
 	}
 
 	@Override
-	public Long updateByPrimaryKeySelective(GoodsInfo record) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).updateByPrimaryKeySelective(record);
+	public Integer updateByPrimaryKeySelective(GoodsInfo record) {
+		return dml(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).updateByPrimaryKeySelective(record));
 	}
 
 	@Override
-	public Long updateByPrimaryKey(GoodsInfo record) {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).updateByPrimaryKeySelective(record);
+	public Integer updateByPrimaryKey(GoodsInfo record) {
+		return dml(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).updateByPrimaryKey(record));
 	}
 
 	@Override
-	public List<GoodsInfo> SelectAllGoodsInfo() {
-		return SqlSessionHelper.opensqlsession().getMapper(GoodsInfoMapper.class).SelectAllGoodsInfo();
+	public List<GoodsInfo> SelectAllGoodsInfo(PageDto dto) {
+		PageHelper.startPage(dto.getPageNum(), dto.getSize());
+		return super.query(sqlSession -> sqlSession.getMapper(GoodsInfoMapper.class).SelectAllGoodsInfo(dto));
 	}
 }

@@ -17,27 +17,27 @@ public class GoodsInfoServiceImpl implements GoodsInfoService {
 	private GoodsInfoMapper mapper = new GoodsInfoMapperImpl();
 
 	@Override
-	public Result deleteByPrimaryKey(Long id) {
-		Long update = mapper.deleteByPrimaryKey(id);
+	public Result deleteByPrimaryKey(Integer id) {
+		Long update = Long.valueOf(mapper.deleteByPrimaryKey(id));
 		return Result.of(update, "删除失败");
 	}
 
 
 	@Override
 	public Result insert(GoodsInfo record) {
-		Long update = mapper.insert(record);
+		Long update = Long.valueOf(mapper.insert(record));
 		return Result.of(update, "新增失败");
 	}
 
 
 	@Override
 	public Result insertSelective(GoodsInfo record) {
-		Long update = mapper.insertSelective(record);
+		Long update = Long.valueOf(mapper.insertSelective(record));
 		return Result.of(update, "新增失败");
 	}
 
 	@Override
-	public Result selectByPrimaryKey(Long id) {
+	public Result selectByPrimaryKey(Integer id) {
 		GoodsInfo goodsInfo = mapper.selectByPrimaryKey(id);
 		Result result = new Result(20000, null);
 		// 将查询的数据设置到结果中
@@ -47,20 +47,20 @@ public class GoodsInfoServiceImpl implements GoodsInfoService {
 
 	@Override
 	public Result updateByPrimaryKeySelective(GoodsInfo record) {
-		Long update = mapper.updateByPrimaryKeySelective(record);
+		Long update = Long.valueOf(mapper.updateByPrimaryKeySelective(record));
 		return Result.of(update, "修改失败");
 	}
 
 
 	@Override
 	public Result updateByPrimaryKey(GoodsInfo record) {
-		Long update = mapper.updateByPrimaryKey(record);
+		Long update = Long.valueOf(mapper.updateByPrimaryKey(record));
 		return Result.of(update, "修改失败");
 	}
 
 	@Override
 	public Result selectAll(PageDto dto) {
-		List<GoodsInfo> list = mapper.SelectAllGoodsInfo();
+		List<GoodsInfo> list = mapper.SelectAllGoodsInfo(dto);
 		// PageInfo中包含了分页信息，分页数据等等
 		PageInfo<GoodsInfo> pageInfo = PageInfo.of(list);
 		// 在前端分页时，只会关心： pageNum,pageSize,list,total

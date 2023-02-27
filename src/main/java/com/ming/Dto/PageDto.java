@@ -2,7 +2,7 @@ package com.ming.Dto;
 
 public class PageDto {
 	private int pageNum = 1;
-	private int size = 10;
+	private int size = 5;
 
 	public int getPageNum() {
 		return pageNum;
@@ -19,4 +19,6 @@ public class PageDto {
 	public void setSize(int size) {
 		this.size = size;
 	}
+
+
 }

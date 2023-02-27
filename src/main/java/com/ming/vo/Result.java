@@ -2,7 +2,7 @@ package com.ming.vo;
 
 
 /**
- * 前后端分离的项目进行数据交互时，必须有一个统一的格式
+ * 前后端分离的项目进行数据交互时，必须有一个统一的格式（前端已经设置）
  * { code:状态码, message:消息, data: 响应的数据 }
  */
 public class Result{

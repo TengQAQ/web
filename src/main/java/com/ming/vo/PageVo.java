@@ -26,10 +26,10 @@ public class PageVo<T> {
 	public static <T> PageVo<T> of(PageInfo<T> pageInfo){
 		PageVo<T> pageVo = new PageVo<T>();
 //		// 设置条数
-//		pageVo.setTotal(pageInfo.getTotal());
-//		pageVo.setPageNum(pageInfo.getPageNum());
-//		pageVo.setPageSize(pageInfo.getPageSize());
-//		pageVo.setList(pageInfo.getList());
+		pageVo.setTotal(pageInfo.getTotal());
+		pageVo.setPageNum(pageInfo.getPageNum());
+		pageVo.setPageSize(pageInfo.getPageSize());
+		pageVo.setList(pageInfo.getList());
 		return pageVo;
 	}
 

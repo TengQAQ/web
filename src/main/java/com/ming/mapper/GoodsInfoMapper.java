@@ -1,5 +1,6 @@
 package com.ming.mapper;
 
+import com.ming.Dto.PageDto;
 import com.ming.entity.GoodsInfo;
 
 import java.util.List;
@@ -10,6 +11,6 @@ import java.util.List;
 * @createDate 2023-02-23 15:11:38
 * @Entity com.ming.entity.GoodsInfo
 */
-public interface GoodsInfoMapper extends BaseMapper<Long,GoodsInfo>{
-    List<GoodsInfo> SelectAllGoodsInfo();
+public interface GoodsInfoMapper extends BaseMapper<Integer,GoodsInfo>{
+    List<GoodsInfo> SelectAllGoodsInfo(PageDto dto);
 }
